@@ -7,10 +7,10 @@ import (
 )
 
 var (
-	apiKey = flag.String("key", os.Getenv("API_KEY"), "the Meetup API ket")
+	apiKey = flag.String("key", os.Getenv("API_KEY"), "the Meetup API key")
 
-	text     = flag.String("text", "", "filter by text")
-	location = flag.String("location", "", "filter by location")
+	text    = flag.String("text", "", "filter by text")
+	country = flag.String("country", "", "filter by country")
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 	}
 
 	client := NewClient(*apiKey)
-	groups, err := client.FindGroups(*location, *text)
+	groups, err := client.FindGroups(*country, *text)
 	if err != nil {
 		panic(err)
 	}

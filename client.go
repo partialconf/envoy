@@ -14,7 +14,7 @@ type Client struct {
 }
 
 // FindGroups searches for groups in Meetup.
-func (c *Client) FindGroups(location, text string) (string, error) {
+func (c *Client) FindGroups(country, text string) (string, error) {
 	r, err := http.NewRequest("GET", c.APIURL+"/find/groups", nil)
 	if err != nil {
 		return "", err
@@ -22,7 +22,7 @@ func (c *Client) FindGroups(location, text string) (string, error) {
 
 	q := r.URL.Query()
 	q.Add("key", c.APIKey)
-	q.Add("location", location)
+	q.Add("country", country)
 	q.Add("text", text)
 	r.URL.RawQuery = q.Encode()
 
